@@ -357,6 +357,7 @@
     <None Include="Assets\Invector-3rdPersonController\Shooter\Scripts\DecalManager\Particle.shader" />
     <None Include="Assets\Invector-3rdPersonController\Add-ons\Controller_Mobile\HOW TO ENABLE-DISABLE UI BUTTONS.txt" />
     <None Include="Assets\Invector-3rdPersonController\Shooter\Resources\AlphaMask.shader" />
+    <None Include="Assets\_www.unityassetcollection.com.txt" />
     <None Include="Assets\Invector-3rdPersonController\Shooter\3DModels\Weapons\vRifle\Materials\vEmissionWithMask.shader" />
     <Reference Include="UnityEngine">
       <HintPath>C:/Program Files/Unity/Hub/Editor/2019.4.6f1/Editor/Data/Managed/UnityEngine/UnityEngine.dll</HintPath>
