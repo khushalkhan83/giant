@@ -96,6 +96,16 @@ namespace Invector.vCharacterController
         [vHelpBox("Set the FixedTimeStep to match the FPS of your Game, \nEx: If your game aims to run at 30fps, select FPS30 to match the FixedUpdate Physics")]
         public CustomFixedTimeStep customFixedTimeStep = CustomFixedTimeStep.FPS60;
 
+        [vEditorToolbar("Dash", order = 1)]
+        [vHelpBox("dash setting")]
+
+        [vSeparator("Dash")]
+        [Tooltip("How much time the character will be dash")]
+        public float dashTimer = 0.3f;
+        internal float dashCounter;
+        [Tooltip("Add Extra dash distance")]
+        public float dashDistance = 4f;
+
         [vEditorToolbar("Jump / Airborne", order = 3)]
 
         [vHelpBox("Jump only works via Rigidbody Physics, if you want Jump that use only RootMotion make sure to use the AnimatorTag 'CustomAction' ")]
@@ -277,6 +287,7 @@ namespace Invector.vCharacterController
         internal bool
             isRolling,
             isJumping,
+            isDashing,
             isInAirborne,
             isTurningOnSpot;
 
@@ -502,6 +513,7 @@ namespace Invector.vCharacterController
             CheckRagdoll();
             ControlCapsuleHeight();
             ControlJumpBehaviour();
+            ControlDashBehaviour();
             AirControl();
             StaminaRecovery();
             CalculateRotationMagnitude();
@@ -940,6 +952,24 @@ namespace Invector.vCharacterController
             var vel = _rigidbody.velocity;
             vel.y = jumpHeight * jumpMultiplier;
             _rigidbody.velocity = vel;
+        }
+
+        protected virtual void ControlDashBehaviour()
+        {
+            if (!isDashing)
+            {
+                return;
+            }
+
+            dashCounter -= Time.fixedDeltaTime;
+            if (dashCounter <= 0)
+            {
+                dashCounter = 0;
+                isDashing = false;
+            }
+           
+            // apply extra force to the jump height   
+            _rigidbody.velocity = transform.forward * 10;
         }
 
         public virtual void SetJumpMultiplier(float jumpMultiplier, float timeToReset = 1f)

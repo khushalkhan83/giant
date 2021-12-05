@@ -278,6 +278,29 @@ namespace Invector.vCharacterController
             }
         }
 
+        public virtual void Dash()
+        {
+            // trigger jump behaviour
+            dashCounter = dashTimer;
+            isDashing = true;
+
+            //OnJump.Invoke();
+
+            // trigger jump animations
+            /*
+            if (input.sqrMagnitude < 0.1f)
+            {
+                animator.CrossFadeInFixedTime("Dash", 0.1f);
+            }
+            else
+            {
+                animator.CrossFadeInFixedTime("JumpMove", .2f);
+            }
+            */
+
+            animator.CrossFadeInFixedTime("Dash", 0.1f);
+        }
+
         /// <summary>
         /// Triggers the Roll Animation and set the stamina cost for this action
         /// </summary>
